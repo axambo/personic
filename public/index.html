@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Personic web app">
+<meta name="author" content="Anna Xambó Sedó">
+<title>Personic</title>
+<!-- Socket.io -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.0/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.35/Tone.js"></script>
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css" media="screen">
+      body {
+        margin: 0;
+        /* font-size: 2vw; */
+        padding-top: 0rem; /* Relative to font-size of the root element */
+      }
+      canvas {
+        /* border: 0; */
+        /* background: white; */
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height:100%;
+        /* z-index: -9999; */
+      }
+      body, button {
+        font-family: monospace;
+      }
+      button {
+        /* font-size: 2vw; */
+        /* height: 2em; */
+        /* width: 12em; */
+        margin-bottom: 0.5rem;
+      }
+      #menu-container {
+        position:fixed;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height:100%;
+        overflow: scroll;
+      }
+      #menu{
+        display: block;
+        position: absolute; /* before scroll it was fixed to overlap the canvas */
+        z-index: 1;
+        margin: 2em;
+        padding: 0 0 3rem 0;
+        /* width: 50%; */ /* before 33% */
+      }
+      /* FOR #simulation-mode */
+      #lowermenu, #displaymenu {
+        display:none;
+      }
+      h3 {
+        margin-top: 2rem;
+      }
+      .gui-message{
+        margin-bottom:1rem;
+      }
+      .gui-label{
+        margin:0;
+        padding:0.5rem 0;
+        font-weight: bold;
+      }
+    </style>
+</head>
+<body>
+  <!-- <script src="js/bootstrap.min.js"></script> -->
+
+  <canvas></canvas>
+
+  <div class="row" id="menu-container">
+  <div class="col-md-9">
+    <!-- <div id="menu-container" role="main" class="container"> -->
+
+      <div id="menu">
+      <div id="uppermenu">
+        <!-- <p>Select your adventure:</p> -->
+        <h1>Welcome to Personic!</h1>
+        <h2>Instructions</h2>
+        <ul>
+          <li>Activate your device's and browser's location for a real experience.</li>
+          <li>Make sure that the sound volume is on.</li>
+          <li>Press either "Start" for a real experience (geolocation needed) or "Simulation" for a simulation (no geolocation needed).</li>
+        </ul>
+        <button type="button" id="reality-mode">Start</button>
+        <button type="button" id="simulation-mode">Simulation</button>
+      </div>
+      <div id="lowermenu">
+        <div id="lowermenu-getdata">
+          <h3>1.Press the button to get your location data</h3>
+          <button type="button" id="getpos">Get Position</button>
+          <p>Latitude: <span id="latitude"></span></p>
+          <p>Longitude: <span id="longitude"></span></p>
+          <p>Current position: <span id="currentposition"><!--Position information will be inserted here--></span></p>
+          <div id="feedback"></div>
+        </div>
+        <div id="lowermenu-senddata">
+          <h3>2. Press the button to share your location with the web app</h3>
+          <button type="button" id="sendpos">Share Position</button>
+        </div>
+        <div id="lowermenu-simulation-getdata">
+          <h3>1. Select the number of connections in the simulation by dragging the slider from left to right</h3>
+          <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="25" class="slider" id="simslider">
+            <div id="resultsimslider"></div>
+          </div>
+          <p><strong>2.Press the button to send the data</strong></p>
+          <button type="button" id="sendsim">Activate simulation</button>
+        </div>
+      </div>
+      <div id="displaymenu">
+        <div id="display">No connections</div>
+        <ul class="gui-message" id="messages"></ul>
+        <h3>3. Press the button to play/stop the sound from all the connected participants</h3>
+        <p class="gui-label">Play/Stop the sound:</p>
+        <button id="soundswitch" data-playing="false" role="switch" aria-checked="false">
+          <span>Play/Pause</span>
+        </button>
+        <div class="gui-message" id="playMessage"><span style='background-color: #E78587'>Sound is paused. Press 'Play' to play.</span></div>
+        <p class="gui-label">Play solo sound/all sounds:</p>
+        <button id="soloswitch" role="switch" aria-checked="false">
+          <span>All/Solo</span>
+        </button>
+        <div class="gui-message" id="soloMessage">Your solo sound</div>
+        <div class="slidecontainer">
+          <p class="gui-label">Change volume:</p>
+          <input type="range" min="0.0" max="1.0" step="0.01" value="0.5" class="slider" id="volslider">
+          <div id="resultvolslider"></div>
+        </div>
+        <p class="gui-label">Change the oscillator type:</p>
+        <button type="button" id="oscselector">
+          <span>Change osc type (random)</span>
+        </button>
+        <div class="gui-message" id="osctypeMessage">sine</div>
+      </div> <!-- end of displaymenu -->
+    </div> <!-- end menu -->
+    <!-- </div> -->
+  </div> <!-- end col-md-9 -->
+  <div class="col-md-3"></div>
+</div> <!-- end menu-container -->
+
+
+
+  <script src="js/personic.js"></script>
+</body>
+</html>
