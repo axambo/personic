@@ -1,6 +1,6 @@
 # personic
 
-Copyright 2020-21 Anna Xambó Sedó
+Copyright 2021-22 Anna Xambó Sedó
 
 ## Introduction
 
@@ -13,6 +13,10 @@ You can find more information in the paper:
 A performance with an early prototype can be found at:
 
 * Goudarzi, V., Xambó, A. (2022) [Ear to Waipapa Taumata Rau](https://nime.pubpub.org/pub/h3znmkok). In Proceedings of the New Interfaces for Musical Expression (NIME ’22). Waipapa Taumata Rau, Aotearoa / The University of Auckland, New Zealand.
+
+A video demo of version 1.1.0-alpha can be watched at:
+
+* [https://archive.org/details/personic-1.1.0-alpha-demo-2022-07-14](https://archive.org/details/personic-1.1.0-alpha-demo-2022-07-14)
 
 ## What to install
 
