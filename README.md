@@ -106,7 +106,7 @@ Thank you to Gerard Roma for his constant technical support and guidance. Many t
 
 ## License
 
-Copyright 2020-21 Anna Xambó Sedó
+Copyright 2021-22 Anna Xambó Sedó
 
 Released under the MIT License: [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
 
